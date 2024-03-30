@@ -1,0 +1,41 @@
+<Function>:
+    Screen:
+        name: 'generate'    #generate screen
+        FloatLayout:
+            Button:
+                id: gen_button  #generate button
+                text:'Generate'
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                size_hint: .4,.15 
+                on_release: root.generate(root) #on click, call generate function from qr_android_app
+                on_release: root.current = 'image_view' #It will go to image_view screen
+    Screen:
+        name: 'image_view'  #image view screen
+        FloatLayout:
+            size_hint_y: 1.1
+            padding: '20dp'
+            orientation: 'vertical'
+            pos_hint: {'center_y': .5}
+            MDLabel:    #random part of the code
+                id: qr_code
+                text: "QR Code"
+                halign: 'center'
+                pos_hint: {'center_x': 0.5,'center_y': 0.82}
+                size_hint: .4, .4
+            Image:  #qr code image
+                id: qr_image
+                halign: 'center'
+                pos_hint: {'center_x': 0.5,'center_y': 0.55}
+                size_hint: .5, .4
+            MDLabel:    #counter
+                id: timing
+                text: ""
+                halign: 'center'
+                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+            Button:     #stop button
+                id: stop_button
+                text:'Stop'
+                on_release: root.stop(root)     #on click, stop generating
+                on_release: root.current = 'generate'   #and go to generate screen
+                pos_hint: {'center_x': 0.5,'center_y': 0.2}
+                size_hint: 0.6,0.1
